@@ -1,0 +1,6 @@
+server:
+  port: 8088
+
+spring:
+  profiles:
+    active: native # source for all configurations within the config server application, not on git
