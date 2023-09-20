@@ -103,7 +103,8 @@ Below is the overview of the project's database diagram:
 
 ## Remarks
 Below are some remarks, stuff not yet done but seen as possible improvements:
+* Use _spring-boot-starter-validation_ to provide validation for the requests;
 * Reducing microservice duplicity of Java Objects with shared libraries;
-* Write Unit tests (JUnit);
 * Implement some sort of Security;
+* Write Unit tests (JUnit);
 * Change @repository layers to have a real Database like _PostgresSQL_ instead of _List_ and _HashMap_;
