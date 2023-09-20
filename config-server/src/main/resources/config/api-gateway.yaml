@@ -1,0 +1,31 @@
+server:
+  port: 8060
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0 # 100% de tracing coverage
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: product-service
+          uri: lb://product-service # asks the Load Balancer for an instance of the Product Micro-service
+          predicates:
+            - Path=/product/**, /type/** # redirect all requests from :8060/product/... or :8060/type/.. to the Product Service Load Balancer
+        - id: order-service
+          uri: lb://order-service # asks the Load Balancer for an instance of the Product Micro-service
+          predicates:
+            - Path=/order/** # redirect all requests from :8060/order/... to the Order Service Load Balancer
+        - id: inventory-service
+          uri: lb://inventory-service # asks the Load Balancer for an instance of the Inventory Micro-service
+          predicates:
+            - Path=/inventory/** # redirect all requests from :8060/inventory/... to the Inventory Service Load Balancer
